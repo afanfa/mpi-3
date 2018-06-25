@@ -3,6 +3,9 @@
 #include <mpi.h>
 #include <string.h>
 
+/* Process 0 shares the data read from disk with all the other
+ * processes on the same node using shared-memory */
+
 int main(void)
 {
   int i, j, n = 9000, me, np, local_me, local_np;
@@ -37,10 +40,6 @@ int main(void)
 			  &y, &win_y);
   MPI_Win_allocate_shared(local_size, sizeof(double), MPI_INFO_NULL, shmemcomm,
 			  &z, &win_z);
-
-  //x = (double *)malloc(n*n*sizeof(double));
-  //y = (double *)malloc(n*n*sizeof(double));
-  //z = (double *)malloc(n*n*sizeof(double));
 
   if(local_me == 0)
     {
