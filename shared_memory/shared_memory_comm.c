@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <mpi.h>
 #include <string.h>
+#include <math.h>
+#include <time.h>
 
 int main(void)
 {
